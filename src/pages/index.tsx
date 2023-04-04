@@ -1,3 +1,4 @@
+import React from "react";
 import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
 import Head from "next/head";
@@ -7,7 +8,6 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import { type RouterOutputs, api } from "~/utils/api";
 import Image from "next/image";
 import { LoadingPage, LoadingSpinner } from '../components/loading'
-import React from "react";
 import { toast } from "react-hot-toast";
 
 dayjs.extend(relativeTime)
@@ -78,8 +78,12 @@ const PostView = (props: PostWithUser) => {
       />
       <div className="flex flex-col">
         <div className="flex text-slate-300 gap-1">
-          <span>{`@${author.username}`}</span>
-          <span className="font-thin">{`· ${dayjs(post.createdAt).fromNow()}`}</span>
+          <Link href={`/@${author.username}`}>
+            <span>{`@${author.username}`}</span>
+          </Link>
+          <Link href={`/post/${post.id}`}>
+            <span className="font-thin">{`· ${dayjs(post.createdAt).fromNow()}`}</span>
+          </Link>
         </div>
         <span className="text-xl">{post.content}</span>
       </div>
