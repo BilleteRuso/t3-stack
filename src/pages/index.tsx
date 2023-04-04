@@ -85,7 +85,9 @@ const PostView = (props: PostWithUser) => {
             <span className="font-thin">{`· ${dayjs(post.createdAt).fromNow()}`}</span>
           </Link>
         </div>
-        <span className="text-xl">{post.content}</span>
+        <div className="md:max-w-xl text-ellipsis overflow-hidden">
+          <span className="text-xl">{post.content}</span>
+        </div>
       </div>
     </div>
   )
